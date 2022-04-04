@@ -19,17 +19,18 @@ TEST_CASE("Good Input")
     CHECK(a * b == c);
     CHECK((-a)==(a_));
     CHECK((+a)==(a));
-    CHECK((a+=4) != c);
-    CHECK((b*=7.2) != c);
     CHECK(a>a_);
     CHECK(a>=a_);
-
+    (a+=4);
+    CHECK(a!= c);
     v1.push_back(6);
     v1.push_back(4);
     Matrix d{v1, 2, 3};
     v3 = {19, 3, 8, 11, 9, 9};
     Matrix e{v3, 2, 3};
-    CHECK(d + b == e);
+    CHECK((d + b) == e);
+    (b*=7.2);
+    CHECK(b!= c);
     CHECK_NOTHROW(a * b);
     CHECK_NOTHROW(d + b);
     CHECK_NOTHROW(b + c);
@@ -46,7 +47,7 @@ TEST_CASE("incorrect size")
     CHECK_THROWS(a+b);
     CHECK_THROWS(a-c);
     CHECK_THROWS(b*c);
-}
+ }
 TEST_CASE("incorrect input"){
     vector<double> v1 = {11, 3, 7, 11};
     CHECK_THROWS(Matrix a(v1,-2,-3));

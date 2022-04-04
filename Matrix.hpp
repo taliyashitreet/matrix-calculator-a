@@ -12,38 +12,45 @@ namespace zich
     private:
         vector<double> mat;
         int row, col;
+        vector<vector<double>> twoDmat;
 
     public:
-        Matrix(vector<double> v, int col, int row)
-        {
-            if(col*row != v.size() || col<=0 || row<=0){
-                throw invalid_argument("incorrect input");
-            }
-            this->col = col;
-            this->row = row;
-            this->mat = v;
-        }
-        Matrix(){}
+        // int getRow(){
+        //     return this->row;
+        // }
+        // int getCol(){
+        //     return this->col;
+        // }
+        // vector<vector<double> > getMat(){
+        //     return this->twoDmat;
+        // }
 
+        Matrix(vector<double> v, int row, int col);
+        Matrix() {}
+        // Operators between 2 Matrix:
         friend Matrix operator-(const Matrix &a, const Matrix &b);
         friend Matrix operator+(const Matrix &a, const Matrix &b);
-        friend Matrix operator-=(const Matrix &a,double);
+        friend Matrix operator*(const Matrix &a, const Matrix &b);
+        // operators on one Matrix:
         friend Matrix operator-(const Matrix &a);
         friend Matrix operator+(const Matrix &a);
-        friend Matrix operator++(const Matrix &a);
-        friend Matrix operator--(const Matrix &a);
-        friend Matrix operator*=(const Matrix &a, double);
-        friend Matrix operator+=(const Matrix &a, double);
+        friend Matrix operator*(double, const Matrix &a);
+        // operators for change one Matrix:
+        friend void operator++(Matrix &a);
+        friend void operator--(Matrix &a);
+        friend void operator*=(Matrix &a, double);
+        friend void operator-=(Matrix &a, double);
+        friend void operator+=(Matrix &a, double);
+        // Comparison operators:
         friend bool operator>=(const Matrix &a, const Matrix &b);
         friend bool operator<=(const Matrix &a, const Matrix &b);
         friend bool operator<(const Matrix &a, const Matrix &b);
         friend bool operator>(const Matrix &a, const Matrix &b);
         friend bool operator==(const Matrix &a, const Matrix &b);
         friend bool operator!=(const Matrix &a, const Matrix &b);
+        // cout and cin operatos:
         friend istream &operator>>(istream &in, const Matrix &m);
         friend ostream &operator<<(ostream &out, const Matrix &m);
-        friend Matrix operator*(double, const Matrix &a);
-        friend Matrix operator*(const Matrix &a, const Matrix &b);
     };
 }
 #endif
