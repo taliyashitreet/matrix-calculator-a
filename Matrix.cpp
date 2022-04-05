@@ -201,67 +201,33 @@ Matrix operator*(const Matrix &a, const Matrix &b)
     //comparsion operators:
     bool operator>=(const Matrix &a, const Matrix &b)
     {
-        if (a.row != b.row || a.col != b.col)
-        {
-            throw invalid_argument("this two matrix are not the same size");
-        }
-        for (size_t i = 0; i < a.row; i++)
-        {
-            for (size_t j = 0; j < a.col; j++)
-            {
-                if (a.twoDmat[i][j] < b.twoDmat[i][j])
-                    return false;
-            }
-        }
-        return true;
+        return (accumulate(a.mat.begin(),a.mat.end(),0) >= accumulate(b.mat.begin(),b.mat.end(),0));
+        // if (a.row != b.row || a.col != b.col)
+        // {
+        //     throw invalid_argument("this two matrix are not the same size");
+        // }
+        // for (size_t i = 0; i < a.row; i++)
+        // {
+        //     for (size_t j = 0; j < a.col; j++)
+        //     {
+        //         if (a.twoDmat[i][j] < b.twoDmat[i][j])
+        //             return false;
+        //     }
+        // }
+        // return true;
     }
     bool operator<=(const Matrix &a, const Matrix &b)
     {
-        if (a.row != b.row || a.col != b.col)
-        {
-            throw invalid_argument("this two matrix are not the same size");
-        }
-        for (size_t i = 0; i < a.row; i++)
-        {
-            for (size_t j = 0; j < a.col; j++)
-            {
-                if (a.twoDmat[i][j] > b.twoDmat[i][j])
-                    return false;
-            }
-        }
-        return true;
+        return (accumulate(a.mat.begin(),a.mat.end(),0) <= accumulate(b.mat.begin(),b.mat.end(),0));
     }
     bool operator<(const Matrix &a, const Matrix &b)
     {
-        if (a.row != b.row || a.col != b.col)
-        {
-            throw invalid_argument("this two matrix are not the same size");
-        }
-        for (size_t i = 0; i < a.row; i++)
-        {
-            for (size_t j = 0; j < a.col; j++)
-            {
-                if (a.twoDmat[i][j] >= b.twoDmat[i][j])
-                    return false;
-            }
-        }
-        return true;
+        return (accumulate(a.mat.begin(),a.mat.end(),0) < accumulate(b.mat.begin(),b.mat.end(),0));
+ 
     }
     bool operator>(const Matrix &a, const Matrix &b)
     {
-        if (a.row != b.row || a.col != b.col)
-        {
-            throw invalid_argument("this two matrix are not the same size");
-        }
-        for (size_t i = 0; i < a.row; i++)
-        {
-            for (size_t j = 0; j < a.col; j++)
-            {
-                if (a.twoDmat[i][j] <= b.twoDmat[i][j])
-                    return false;
-            }
-        }
-        return true;
+        return (accumulate(a.mat.begin(),a.mat.end(),0) > accumulate(b.mat.begin(),b.mat.end(),0));
     }
     bool operator==(const Matrix &a, const Matrix &b)
     {
